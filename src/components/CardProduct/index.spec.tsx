@@ -44,7 +44,7 @@ describe('Product Component', () => {
     test('should render a value on the product card', () => {
         const { getByText } = render(<CardProduct product={products[0]} />)
 
-        expect(getByText('Add to cart')).toBeInTheDocument()
+        expect(getByText('R$ 3.400,00')).toBeInTheDocument()
     })
 
     test('should be a render add button on the card', () => {
