@@ -1,5 +1,5 @@
-import CardProduct from './components/CardProduct';
-import './main.css'
+import { render, screen, within } from '@testing-library/react';
+import CardProduct from ".";
 
 const products = [
   {
@@ -34,19 +34,22 @@ const products = [
   }
 ];
 
-function App() {
-  return (
-    <div className="max-w-[1280px] mx-auto flex flex-col items-center my-20">
-      <h1 className='text-2xl text-white font-black mt-1'>Shopping Cart</h1>
-      <div className='flex flex-col items-center my-4 bg-[#fff]'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 p-4'>
-          {
-            products && products.map(product => <CardProduct product={product} />)
-          }
-        </div>
-      </div>
-    </div>
-  )
-}
+describe('Product Component', () => {
+    test('should render a description on the product card', () => {
+        const { getByText } = render(<CardProduct product={products[0]} />)
 
-export default App
+        expect(getByText('Smart TV Samsung 50 Polegadas')).toBeInTheDocument()
+    })
+
+    test('should render a value on the product card', () => {
+        const { getByText } = render(<CardProduct product={products[0]} />)
+
+        expect(getByText('Add to cart')).toBeInTheDocument()
+    })
+
+    test('should be a render add button on the card', () => {
+        const { getByText } = render(<CardProduct product={products[0]} />)
+
+        expect(getByText('Add to cart')).toBeInTheDocument()
+    })
+})
