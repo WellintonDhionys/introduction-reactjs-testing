@@ -1,9 +1,13 @@
 import './main.css'
+import Header from './components/Header';
 import Products from './pages/Products';
 
 function App() {
   return (
-    <Products />
+    <>
+      <Header />
+      <Products />
+    </>
   )
 }
 
