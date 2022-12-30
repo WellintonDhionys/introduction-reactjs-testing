@@ -1,4 +1,7 @@
+import { useState } from "react";
 import CardProduct from "../../components/CardProduct";
+import ModalAddCart from "../../components/ModalAddCart";
+import { BasicProductResponse } from "../../types/Product";
 
 const products = [
   {
@@ -34,15 +37,29 @@ const products = [
 ];
 
 function Products() {
+  const [selectedProduct, setSelectedProduct] = useState<BasicProductResponse>({})
+  const [showModal, setShowModal] = useState(false)
+
+  const hiddenModal = () => {
+    setShowModal(false)
+    setSelectedProduct({})
+  }
+
+  const handleSelectProduct = (item: BasicProductResponse) => {
+    setSelectedProduct(item)
+    setShowModal(true)
+  }
+
   return (
     <div className="max-w-[1280px] mx-auto flex flex-col items-center my-20">
       <h1 className='text-2xl text-white font-black mt-1'>Shopping Cart</h1>
       <div className='flex flex-col items-center my-4 bg-[#fff]'>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 p-4'>
           {
-            products && products.map(product => <CardProduct key={product.id} product={product} />)
+            products && products.map(product => <CardProduct key={product.id} product={product} handleSelectProduct={handleSelectProduct} />)
           }
         </div>
+        <ModalAddCart product={selectedProduct} showModal={showModal} hiddenModal={hiddenModal} />
       </div>
     </div>
   )
