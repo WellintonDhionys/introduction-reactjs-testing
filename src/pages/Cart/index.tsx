@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import Counter from '../../components/Counter';
+import Count from '../../components/Count';
 
 const products = [
   {
     id: '1',
-    description: 'Smart TV Samsung 50 Polegadas Gaming Neo QLED 4K, 4 HDMI, Bluetooth, Wi-Fi, 144Hz, IA, HDR 10+, Alexa, Preto - QN50QN90BAGXZD',
+    description: 'Smart TV Samsung 50 Polegadas',
     value: '3.400,00',
     url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
   },
@@ -41,7 +41,7 @@ function Cart() {
                   <p className='font-bold text-[#17cc11] text-sm'>R$ {product?.value}</p>
                 </div>
               </div>
-              <Counter />
+              <Count />
               <div className="flex flex-wrap items-center justify-cente w-1/12">
                 <p className='font-bold text-xs'>R$ {product?.value}</p>
               </div>
