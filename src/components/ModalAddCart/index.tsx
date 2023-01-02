@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { BasicProductResponse } from "../../types/Product";
 
 interface ProductProps {
@@ -7,6 +8,8 @@ interface ProductProps {
 }
 
 export default function ModalAddCart({ product, showModal, hiddenModal }: ProductProps) {
+    const navigate = useNavigate()
+
     return (
         <>
             {
@@ -32,6 +35,7 @@ export default function ModalAddCart({ product, showModal, hiddenModal }: Produc
                                         Continuar comprando
                                     </button>
                                     <button
+                                        onClick={() => navigate('/cart')}
                                         className='w-42 px-4 py-2 mx-2 text-sm font-semibold text-[#FF6500] border border-[#FF6500] hover:bg-[#FF6500] hover:text-white'
                                     >
                                         Ir para o carrinho

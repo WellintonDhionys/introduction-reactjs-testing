@@ -35,21 +35,21 @@ const products = [
 ];
 
 describe('Product Component', () => {
-    test('should render a description on the product card', () => {
-        const { getByText } = render(<CardProduct product={products[0]} />)
+  test('should render a description on the product card', () => {
+    const { getByText } = render(<CardProduct product={products[0]} handleSelectProduct={() => {}} />)
 
-        expect(getByText('Smart TV Samsung 50 Polegadas')).toBeInTheDocument()
-    })
+    expect(getByText('Smart TV Samsung 50 Polegadas')).toBeInTheDocument()
+  })
 
-    test('should render a value on the product card', () => {
-        const { getByText } = render(<CardProduct product={products[0]} />)
+  test('should render a value on the product card', () => {
+    const { getByText } = render(<CardProduct product={products[0]} handleSelectProduct={() => {}} />)
 
-        expect(getByText('R$ 3.400,00')).toBeInTheDocument()
-    })
+    expect(getByText('R$ 3.400,00')).toBeInTheDocument()
+  })
 
-    test('should be a render add button on the card', () => {
-        const { getByText } = render(<CardProduct product={products[0]} />)
+  test('should be a render add button on the card', () => {
+    const { getByText } = render(<CardProduct product={products[0]} handleSelectProduct={() => {}} />)
 
-        expect(getByText('Add to cart')).toBeInTheDocument()
-    })
+    expect(getByText('Add to cart')).toBeInTheDocument()
+  })
 })

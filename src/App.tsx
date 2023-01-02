@@ -1,13 +1,13 @@
+import { BrowserRouter as Router } from "react-router-dom";
+
 import './main.css'
-import Header from './components/Header';
-import Products from './pages/Products';
+import Routes from './routes';
 
 function App() {
   return (
-    <>
-      <Header />
-      <Products />
-    </>
+    <Router>
+      <Routes />
+    </Router>
   )
 }
 
