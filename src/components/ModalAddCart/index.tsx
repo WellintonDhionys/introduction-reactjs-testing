@@ -18,7 +18,7 @@ export default function ModalAddCart({ product, showModal, hiddenModal }: Produc
                         <h1 className="text-center font-bold mt-2">Produto adicionado ao carrinho</h1>
                         <div className="flex flex-row my-6">
                             <div className="flex justify-center mr-6">
-                                <img className="w-56" src={product?.url} alt="Sunset in the mountains" />
+                                <img className="w-56" src={product?.url} alt={product?.description}/>
                             </div>
                             <div>
                                 <div className='flex flex-wrap'>

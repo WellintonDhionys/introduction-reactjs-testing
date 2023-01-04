@@ -30,7 +30,7 @@ function Cart() {
       <div className='p-4'>
         {
           products && products.map(product => (
-          <div className="w-[900px] overflow-hidden shadow-md bg-white px-6 py-4">
+          <div key={product.id} className="w-[900px] overflow-hidden shadow-md bg-white px-6 py-4">
             <div className="flex flex-row w-full my-6">
               <div className="flex justify-center w-1/4 mr-6">
                 <img className="w-56" src={product?.url} alt="Sunset in the mountains" />
