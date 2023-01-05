@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import Count from '../../components/Count';
+import { Count } from '../../components';
 
 const products = [
   {

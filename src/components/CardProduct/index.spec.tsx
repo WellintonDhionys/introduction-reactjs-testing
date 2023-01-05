@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import CardProduct from ".";
+import { CardProduct } from ".";
 
 const products = [
   {

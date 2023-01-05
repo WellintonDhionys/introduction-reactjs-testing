@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
-export default function Header() {
+export function Header() {
     return (
         <header className='mt-2'>
             <div className="container flex items-right justify-between h-full mx-auto">

@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/react'
-import Count from "."
+import { Count } from "."
 
 describe('Count Component', () => {
   test('should render decrement button', () => {

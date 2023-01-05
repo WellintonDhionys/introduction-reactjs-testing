@@ -1,6 +1,5 @@
 import { useState } from "react";
-import CardProduct from "../../components/CardProduct";
-import ModalAddCart from "../../components/ModalAddCart";
+import { CardProduct, ModalAddCart } from "../../components";
 import { BasicProductResponse } from "../../types/Product";
 
 const products = [

@@ -5,7 +5,7 @@ interface ProductProps {
     handleSelectProduct: (value: BasicProductResponse) => void;
 }
 
-export default function CardProduct({ product, handleSelectProduct }: ProductProps) {
+export function CardProduct({ product, handleSelectProduct }: ProductProps) {
     return (
         <div className='max-w-[300px] rounded overflow-hidden shadow-md bg-[#fff]'>
             <img className="w-full" src={product.url} alt={product.description} />

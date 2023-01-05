@@ -7,7 +7,7 @@ interface ProductProps {
     hiddenModal: () => void;
 }
 
-export default function ModalAddCart({ product, showModal, hiddenModal }: ProductProps) {
+export function ModalAddCart({ product, showModal, hiddenModal }: ProductProps) {
     const navigate = useNavigate()
 
     return (

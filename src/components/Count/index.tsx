@@ -1,6 +1,6 @@
-import { useEffect, useState, ChangeEvent, useMemo } from "react"
+import { useEffect, useState, ChangeEvent } from "react"
 
-export default function Count() {
+export function Count() {
     const [count, setCount] = useState(1)
     const [disabled, setDisabled] = useState(false)
 
@@ -41,7 +41,7 @@ export default function Count() {
                 min="1"
                 data-testid="input-count"
                 role="input-count"
-                className="w-8 h-8 outline-none text-center text-sm border border-y-[#000]"
+                className="w-8 h-8 outline-none text-center text-sm border border-y-[#000] appearance-none"
             />
             <button
                 onClick={increment}
