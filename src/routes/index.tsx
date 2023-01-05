@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Cart from "../pages/Cart";
-import Products from '../pages/Products';
+import { Cart } from "../pages/Cart";
+import { Products } from '../pages/Products';
 
 function MainRoutes() {
   return (

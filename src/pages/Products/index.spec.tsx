@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import Products from '.';
+import { render } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
+import { Products } from '.'
 
 const setup = () => {
     const products = render(

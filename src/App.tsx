@@ -1,4 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
+import { AppProvider } from "./hooks";
 
 import './main.css'
 import Routes from './routes';
@@ -6,7 +7,9 @@ import Routes from './routes';
 function App() {
   return (
     <Router>
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
     </Router>
   )
 }

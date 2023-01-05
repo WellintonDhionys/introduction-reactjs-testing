@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { CardProduct, ModalAddCart } from "../../components";
-import { BasicProductResponse } from "../../types/Product";
+import { useState } from "react"
+import { CardProduct, ModalAddCart } from "../../components"
+import { BasicProductResponse } from "../../types/Product"
 
 const products = [
   {
@@ -35,7 +35,8 @@ const products = [
   }
 ];
 
-function Products() {
+export function Products() {
+
   const [selectedProduct, setSelectedProduct] = useState<BasicProductResponse>({})
   const [showModal, setShowModal] = useState(false)
 
@@ -63,5 +64,3 @@ function Products() {
     </div>
   )
 }
-
-export default Products
