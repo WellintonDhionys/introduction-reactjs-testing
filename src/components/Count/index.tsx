@@ -1,6 +1,6 @@
-import { useEffect, useState, ChangeEvent } from "react"
+import { useEffect, useState, ChangeEvent, useMemo } from "react"
 
-export default function Count({ id }: any) {
+export default function Count() {
     const [count, setCount] = useState(1)
     const [disabled, setDisabled] = useState(false)
 
@@ -13,14 +13,16 @@ export default function Count({ id }: any) {
     }
 
     const handleChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setCount(Number(e.target.value))
+        const value = Number(e.target.value)
+        if (value >= 1) {
+            setCount(value)
+        }
     }
 
     useEffect(() => {
         setDisabled(false)
         if (count <= 1) {
             setDisabled(true)
-            setCount(1)
         }
     }, [count])
 
@@ -37,6 +39,7 @@ export default function Count({ id }: any) {
                 value={count}
                 type="number"
                 min="1"
+                data-testid="input-count"
                 role="input-count"
                 className="w-8 h-8 outline-none text-center text-sm border border-y-[#000]"
             />

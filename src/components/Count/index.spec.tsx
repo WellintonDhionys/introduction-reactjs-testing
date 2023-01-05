@@ -1,5 +1,4 @@
-import { render, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, fireEvent } from '@testing-library/react'
 import Count from "."
 
 describe('Count Component', () => {
@@ -22,26 +21,39 @@ describe('Count Component', () => {
     expect(inputCount).toHaveValue(1)
   })
 
-  test('should the increment button when clicked', async () => {
-    const { getByRole, getByText } = render(<Count />)
+  test('should the increment button be clicked to change the input value to two', async () => {
+    const { getByRole } = render(<Count />)
 
     const incrementButton = getByRole('increment-button')
 
-    userEvent.click(incrementButton)
+    fireEvent.click(incrementButton)
 
-    await waitFor(async () => {
-      expect(getByRole('input-count')).toHaveValue(2)
-    })
+    expect(getByRole('input-count')).toHaveValue(2)
   })
 
-  test('should the decrement button when clicked', () => {
+  test('when clicking on the decrement button the input value cannot be less than one', async () => {
     const { getByRole } = render(<Count />)
 
     const decrementButton = getByRole('decrement-button')
 
-    userEvent.click(decrementButton)
+    fireEvent.click(decrementButton)
+    expect(getByRole('input-count')).toHaveValue(1)
+  })
+
+  test('should disable the decrement button if the input value is less than or equal to one', async () => {
+    const { getByRole } = render(<Count />)
+
+    const decrementButton = getByRole('decrement-button')
+
+    expect(decrementButton).toBeDisabled()
+  })
+
+  test('the input value cannot be less than one', async () => {
+    const { getByRole } = render(<Count />)
 
     const inputCount = getByRole('input-count')
+
+    fireEvent.change(inputCount, {target: {value: '-1'}})
     expect(inputCount).toHaveValue(1)
   })
 })
