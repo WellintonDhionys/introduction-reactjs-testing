@@ -1,42 +1,21 @@
 import React, { createContext, useContext, useState } from 'react'
 import { BasicProductResponse } from '../../types/Product'
 
-const productItems = [
-    {
-      id: '1',
-      description: 'Smart TV Samsung 50 Polegadas',
-      value: '3.400,00',
-      url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
-    },
-    {
-      id: '2',
-      description: 'Smartphone Philco Hit P8',
-      value: '512,05',
-      url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
-    },
-    {
-      id: '3',
-      description: 'Headset Gamer Havit',
-      value: '209,99',
-      url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
-    },
-    {
-      id: '4',
-      description: 'Smartphone Philco Hit P8',
-      value: '512,05',
-      url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
-    },
-    {
-      id: '5',
-      description: 'Headset Gamer Havit',
-      value: '209,99',
-      url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
-    }
-  ];
-
 interface CartContextData {
-    products: BasicProductResponse[];
-    getProducts: () => Promise<void>;
+    cartItems: CartProps[];
+    addCartItem: (product: BasicProductResponse) => void;
+    removeCartItem: (id: string) => void;
+}
+
+interface CartProps {
+    product: BasicProductResponse;
+    quantity: number;
+    total: number;
+    totalStr: string;
+}
+
+type CartItem = {
+    [key: string]: CartProps;
 }
 
 interface Props {
@@ -46,26 +25,41 @@ interface Props {
 const CartContext = createContext<CartContextData>({} as CartContextData)
 
 const CartProvider: React.FC<Props> = ({ children }) => {
-    const [products, setProducts] = useState<BasicProductResponse[]>([])
+    const [cartItems, setCartItems] = useState<CartItem>({})
 
-    async function get() {
-        return new Promise<BasicProductResponse[]>((resolve, reject) => {
-            setTimeout(() => {
-                resolve(productItems)
-            }, 1000)
+    function addCartItem(product: BasicProductResponse) {
+        const formatter = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
         })
+
+        const existentItem = cartItems[product.id]
+        if (existentItem) {
+            const total = existentItem.quantity * existentItem.product.price
+            existentItem.quantity++
+            existentItem.total = total
+            existentItem.totalStr = formatter.format(total)
+            setCartItems({ ...cartItems, [product.id]: existentItem })
+        } else {
+            setCartItems({
+                ...cartItems,
+                [product.id]: { product, quantity: 1, total: product.price, totalStr: formatter.format(product.price) }
+            })
+        }
     }
 
-    async function getProducts() {
-        const response = await get()
-        setProducts(response)
+    function removeCartItem(id: string) {
+        const newCartItems = cartItems
+        delete newCartItems[id]
+        setCartItems({...newCartItems })
     }
 
     return (
         <CartContext.Provider
             value={{
-                products,
-                getProducts
+                cartItems: Object.values(cartItems),
+                addCartItem,
+                removeCartItem
             }}>
             {children}
         </CartContext.Provider>

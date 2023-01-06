@@ -1,6 +1,7 @@
 export interface BasicProductResponse {
     description?: string;
     url?: string;
-    value?: string;
-    id?: string;
+    price: number;
+    priceStr: string;
+    id: string;
 }

@@ -11,7 +11,7 @@ export function CardProduct({ product, handleSelectProduct }: ProductProps) {
             <img className="w-full" src={product.url} alt={product.description} />
             <div className='px-4 py-4'>
                 <p className='text-slate-500 text-sm'>{product.description}</p>
-                <p className='font-bold text-lg text-[#17cc11]'>R$ {product.value}</p>
+                <p className='font-bold text-lg text-[#17cc11]'>R$ {product.priceStr}</p>
             </div>
             <div className='px-4'>
                 <button

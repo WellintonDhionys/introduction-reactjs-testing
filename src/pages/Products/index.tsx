@@ -1,52 +1,60 @@
 import { useState } from "react"
 import { CardProduct, ModalAddCart } from "../../components"
+import { useCart } from "../../hooks/cart";
 import { BasicProductResponse } from "../../types/Product"
 
 const products = [
   {
     id: '1',
     description: 'Smart TV Samsung 50 Polegadas',
-    value: '3.400,00',
+    price: 3400,
+    priceStr: '3.400,00',
     url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
   },
   {
     id: '2',
     description: 'Smartphone Philco Hit P8',
-    value: '512,05',
+    price: 512.05,
+    priceStr: '512,05',
     url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
   },
   {
     id: '3',
     description: 'Headset Gamer Havit',
-    value: '209,99',
+    price: 209.99,
+    priceStr: '209,99',
     url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
   },
   {
     id: '4',
     description: 'Smartphone Philco Hit P8',
-    value: '512,05',
+    price: 512.05,
+    priceStr: '512,05',
     url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
   },
   {
     id: '5',
     description: 'Headset Gamer Havit',
-    value: '209,99',
+    price: 209.99,
+    priceStr: '209,99',
     url: 'https://images.unsplash.com/photo-1498603993951-8a027a8a8f84?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2936&q=80'
   }
 ];
 
 export function Products() {
+  const { addCartItem } = useCart()
 
-  const [selectedProduct, setSelectedProduct] = useState<BasicProductResponse>({})
+  const [selectedProduct, setSelectedProduct] = useState<BasicProductResponse>()
   const [showModal, setShowModal] = useState(false)
 
   const hiddenModal = () => {
     setShowModal(false)
-    setSelectedProduct({})
+    setSelectedProduct(undefined)
   }
 
-  const handleSelectProduct = (item: BasicProductResponse) => {
-    setSelectedProduct(item)
+  const handleSelectProduct = (product: BasicProductResponse) => {
+    addCartItem(product)
+    setSelectedProduct(product)
     setShowModal(true)
   }
 

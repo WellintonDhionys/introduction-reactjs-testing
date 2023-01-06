@@ -24,7 +24,7 @@ export function ModalAddCart({ product, showModal, hiddenModal }: ProductProps) 
                                 <div className='flex flex-wrap'>
                                     <div>
                                         <p className='text-slate-500'>{product?.description}</p>
-                                        <p className='font-bold text-xl text-[#17cc11]'>R$ {product?.value}</p>
+                                        <p className='font-bold text-xl text-[#17cc11]'>R$ {product?.priceStr}</p>
                                     </div>
                                 </div>
                                 <div className='flex flex-row items-center mt-6'>
